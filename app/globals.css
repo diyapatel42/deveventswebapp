@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* --- 1. BRAND PALETTE (Classy Apple Look) --- */
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F7;
+  --accent-primary: #007AFF;
+  --accent-primary-hover: #0051D5;
+  --accent-secondary: #5856D6;
+  --accent-tertiary: #AF52DE;
+  --text-primary: #1D1D1F;
+  --text-secondary: #86868B;
+  --text-tertiary: #C7C7CC;
+  --text-inverse: #F5F5F7;
+  --border-subtle: #E5E5EA;
+  --border-medium: #D1D1D6;
+
+  /* --- 2. SHADCN / SYSTEM (OKLCH) --- */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --radius: 0.625rem;
+
+  /* --- 3. ANIMATION TIMING --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --border: oklch(1 0 0 / 10%);
+
+  /* Dark Mode Brand Overrides */
+  --surface: #1C1C1E;
+  --surface-secondary: #2C2C2E;
+  --accent-primary: #0A84FF;
+  --text-primary: #F5F5F7;
+  --text-secondary: #98989D;
+  --border-subtle: #38383A;
+}
+
+@theme inline {
+  --animate-aurora: aurora-complex 20s ease-in-out infinite;
+  --animate-aurora-2: aurora-move-2 18s ease-in-out infinite;
+  --animate-aurora-3: aurora-move-3 20s ease-in-out infinite;
+  --animate-aurora-4: aurora-move-4 22s ease-in-out infinite;
+
+  @keyframes aurora-complex {
+    0%, 100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    33% {
+      transform: translate(30%, 20%) scale(1.2) rotate(120deg);
+    }
+    66% {
+      transform: translate(-20%, 30%) scale(0.9) rotate(240deg);
+    }
+  }
+
+  @keyframes aurora-move-2 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    33% {
+      transform: translate(-25%, -15%) scale(1.1) rotate(-120deg);
+    }
+    66% {
+      transform: translate(20%, -25%) scale(0.95) rotate(-240deg);
+    }
+  }
+
+  @keyframes aurora-move-3 {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    50% {
+      transform: translate(-30%, -70%) scale(1.15) rotate(180deg);
+    }
+  }
+
+  @keyframes aurora-move-4 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+      transform: translate(-30%, 20%) scale(1.1) rotate(90deg);
+    }
+    75% {
+      transform: translate(30%, -20%) scale(0.9) rotate(270deg);
+    }
+  }
+
+  /* Map Variables to Utilities */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/* --- 4. BASE STYLES --- */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    background: #ffffff;
+    min-height: 100vh;
+  }
+  body {
+    @apply text-foreground antialiased;
+    background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+    transition: color var(--transition-base);
+  }
+  h1, h2, h3 {
+    @apply font-semibold tracking-tight text-text-primary;
+  }
+}
+
+/* --- 5. CLASSY UTILITIES --- */
+@layer utilities {
+  .glass-effect {
+    /* Manual CSS to avoid "Unknown Utility" errors */
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .dark .glass-effect {
+    background-color: rgba(28, 28, 30, 0.7);
+  }
+
+  .gradient-text {
+    background-image: linear-gradient(135deg, #007AFF, #AF52DE);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Aurora Background Blobs */
+  .aurora-blob-primary {
+    background: radial-gradient(circle, #4facfe 0%, #00f2fe 100%);
+  }
+
+  .aurora-blob-tertiary {
+    background: radial-gradient(circle, #a855f7 0%, #ec4899 100%);
+  }
+
+  .aurora-blob-secondary {
+    background: radial-gradient(circle, #fbbf24 0%, #f59e0b 100%);
+  }
+
+  .aurora-blob-accent {
+    background: radial-gradient(circle, #22d3ee 0%, #06b6d4 100%);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 99px;
+  border: 3px solid var(--background);
+}

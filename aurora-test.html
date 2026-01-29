@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Test</title>
+    <style>
+        html {
+            background: #ffffff;
+            min-height: 100vh;
+        }
+
+        body {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+            color: #1D1D1F;
+        }
+
+        .aurora-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .aurora-blob-primary {
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #4facfe 0%, #00f2fe 100%);
+            opacity: 0.4;
+            filter: blur(80px);
+            animation: aurora-move-1 15s ease-in-out infinite;
+        }
+
+        .aurora-blob-tertiary {
+            position: absolute;
+            bottom: -20%;
+            right: -20%;
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #a855f7 0%, #ec4899 100%);
+            opacity: 0.4;
+            filter: blur(80px);
+            animation: aurora-move-2 18s ease-in-out infinite;
+        }
+
+        .aurora-blob-secondary {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fbbf24 0%, #f59e0b 100%);
+            opacity: 0.25;
+            filter: blur(90px);
+            animation: aurora-move-3 20s ease-in-out infinite;
+        }
+
+        .aurora-blob-accent {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #22d3ee 0%, #06b6d4 100%);
+            opacity: 0.3;
+            filter: blur(70px);
+            animation: aurora-move-4 22s ease-in-out infinite;
+        }
+
+        @keyframes aurora-move-1 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            33% {
+                transform: translate(30%, 20%) scale(1.2) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20%, 30%) scale(0.9) rotate(240deg);
+            }
+        }
+
+        @keyframes aurora-move-2 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            33% {
+                transform: translate(-25%, -15%) scale(1.1) rotate(-120deg);
+            }
+            66% {
+                transform: translate(20%, -25%) scale(0.95) rotate(-240deg);
+            }
+        }
+
+        @keyframes aurora-move-3 {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+            50% {
+                transform: translate(-30%, -70%) scale(1.15) rotate(180deg);
+            }
+        }
+
+        @keyframes aurora-move-4 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(-30%, 20%) scale(1.1) rotate(90deg);
+            }
+            75% {
+                transform: translate(30%, -20%) scale(0.9) rotate(270deg);
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 6rem;
+            font-weight: 900;
+            background-image: linear-gradient(135deg, #007AFF, #AF52DE);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+        }
+
+        p {
+            color: #86868B;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora-container">
+        <div class="aurora-blob-primary"></div>
+        <div class="aurora-blob-tertiary"></div>
+        <div class="aurora-blob-secondary"></div>
+        <div class="aurora-blob-accent"></div>
+    </div>
+
+    <div class="content">
+        <h1>AURORA TEST</h1>
+        <p>If you see animated blue/purple glows, the Aurora is working!</p>
+    </div>
+</body>
+</html>
+
